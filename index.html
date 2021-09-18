@@ -15,6 +15,10 @@
         .bgcolor--gray{
             background-color: lightgray;
         }
+        .bgimg {
+            background-image: url(space-911785_1920.jpg);
+            background-size: 100%;
+        }
     </style>
 </head>
 <body>
@@ -22,6 +26,7 @@
         <button class="btn_toggle">배경색상변경 토글버튼</button>
         <button class="btn--reset">배경색상 리셋</button>
         <button class="btn--bggray">배경색상변경 그레이</button>
+        <button class="btn_img">배경 이미지 변경</button>
     </div>
     <script>
         const btnToggle = document.querySelector('.btn_toggle');
@@ -30,11 +35,15 @@
         });
         const btnReset = document.querySelector('.btn--reset');
         btnReset.addEventListener('click', function()  {
-            document.body.classList.remove('bgcolor--blue', 'bgcolor--gray');
+            document.body.classList.remove('bgcolor--blue', 'bgcolor--gray', 'bgimg');
         });
         const btnBgGray = document.querySelector('.btn--bggray');
         btnBgGray.addEventListener('click', function(){
             document.body.classList.add('bgcolor--gray');
+        });
+        const btnImg = document.querySelector('.btn_img');
+        btnImg.addEventListener('click', function(){
+            document.body.classList.add('bgimg');
         });
     </script>
 </body>
