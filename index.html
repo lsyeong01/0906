@@ -7,6 +7,9 @@
     <title>Document</title>
     <style>
         body{
+            transition: all 1s;
+            height: 2000px;
+            margin: auto 0;
             background-color: lightyellow;
         }
         .bgcolor--blue{
@@ -17,34 +20,129 @@
         }
         .bgimg {
             background-image: url(space-911785_1920.jpg);
-            background-size: 100%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100vh;
+            transition: all 1s;
+            opacity: 0;
+            position: absolute;
+            margin: 0;
+        }
+
+        .bgimg_show {
+            opacity: 1;
+        }
+
+        .btns {
+            position: fixed;
+            top: 60px;
+            height: 60px;
+            /* margin: 0 auto; */
+            text-align: center;
+            padding: 10px;
+            background-color: transparent;
+            /* text-align: center; */
+            width: 100%;
+            transition: 0.5s;
+        }
+
+        .btns.bgshow {
+            background-color: palevioletred;
+            height: 6vh;
+        }
+
+        button {
+            margin: 0;
+            width: 200px;
+            height: 50px;
+            background-color: black;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 14px;
+            font-family: '나눔고딕';
+            line-height: 20px;
+        }
+
+        #go-top {
+            display: none;
+            position: fixed;
+            right: 30px;
+            bottom: 50px;
+            outline: 0;
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+            z-index: 9999;
+            color: #3d53cc;
         }
     </style>
 </head>
 <body>
+    <div class="bgimg"></div>
     <div class="btns">
         <button class="btn_toggle">배경색상변경 토글버튼</button>
         <button class="btn--reset">배경색상 리셋</button>
         <button class="btn--bggray">배경색상변경 그레이</button>
         <button class="btn_img">배경 이미지 변경</button>
     </div>
+    
+    <button id="go-top"><svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" fill="currentColor"
+    class="bi bi-arrow-up-circle-fill" viewBox="0 0 16 16">
+    <path fill-rule="evenodd"
+      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z" />
+  </svg></button>
+
     <script>
         const btnToggle = document.querySelector('.btn_toggle');
         btnToggle.addEventListener('click', function()  {
+            bgContainer.classList.remove('bgimg_show');
             document.body.classList.toggle('bgcolor--blue');
         });
         const btnReset = document.querySelector('.btn--reset');
         btnReset.addEventListener('click', function()  {
+            bgContainer.classList.remove('bgimg_show');
             document.body.classList.remove('bgcolor--blue', 'bgcolor--gray', 'bgimg');
         });
         const btnBgGray = document.querySelector('.btn--bggray');
         btnBgGray.addEventListener('click', function(){
+            bgContainer.classList.remove('bgimg_show');
             document.body.classList.add('bgcolor--gray');
         });
+        const bgContainer = document.querySelector('.bgimg');
         const btnImg = document.querySelector('.btn_img');
         btnImg.addEventListener('click', function(){
-            document.body.classList.add('bgimg');
+            // bgContainer.classList.add('bgimg_show');
+            bgContainer.classList.add('bgimg_show');
         });
+
+        const navContainer = document.querySelector('.btns');
+        document.addEventListener('scroll', function() {
+            if (window.scrollY > 100) {
+                navContainer.classList.add('bgshow');
+            } else {
+            navContainer.classList.remove('bgshow');
+            }
+        });
+
+    var backToTop = () => {
+        window.addEventListener('scroll', () => {
+        if (document.querySelector('html').scrollTop > 500) {
+            document.getElementById('go-top').style.display = "block";
+            } else {
+            document.getElementById('go-top').style.display = "none";
+            }
+        });
+        document.getElementById('go-top').addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+            });
+        })
+    };
+backToTop();
     </script>
 </body>
 </html>
