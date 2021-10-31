@@ -36,11 +36,11 @@
 
         .btns {
             position: fixed;
-            top: 60px;
+            /* padding-top: 60px; */
             height: 60px;
             /* margin: 0 auto; */
             text-align: center;
-            padding: 10px;
+            padding-top: 20px;
             background-color: transparent;
             /* text-align: center; */
             width: 100%;
@@ -49,20 +49,34 @@
 
         .btns.bgshow {
             background-color: palevioletred;
-            height: 6vh;
+            height: 72px;
         }
 
         button {
+            /* top: 10px; */
             margin: 0;
-            width: 200px;
+            width: 110px;
             height: 50px;
-            background-color: black;
+            background-color: skyblue;
             border: none;
-            border-radius: 5px;
-            color: white;
+            border-radius: 15px;
+            color: purple;
             font-size: 14px;
             font-family: '나눔고딕';
             line-height: 20px;
+            font-style: bold;
+            cursor: pointer;
+        }
+
+        #home, #about, #skills, #works, #contact {
+            padding-top: 150px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 30pt;
+            padding: 0;
+            line-height: 0;
         }
 
         #go-top {
@@ -82,21 +96,63 @@
 <body>
     <div class="bgimg"></div>
     <div class="btns">
-        <button class="btn_toggle">배경색상변경 토글버튼</button>
-        <button class="btn--reset">배경색상 리셋</button>
-        <button class="btn--bggray">배경색상변경 그레이</button>
-        <button class="btn_img">배경 이미지 변경</button>
+        <button class="btn_toggle">Home</button>
+        <button class="btn--reset">About</button>
+        <button class="btn--bggray">Skills</button>
+        <button class="btn_img">Works</button>
+        <button class="btn_contact">Contact</button>
     </div>
     
     <button id="go-top"><svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" fill="currentColor"
     class="bi bi-arrow-up-circle-fill" viewBox="0 0 16 16">
-    <path fill-rule="evenodd"
-      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z" />
-  </svg></button>
+        <path fill-rule="evenodd"
+            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z" />
+            </svg>
+    </button>
+
+    <section id="home">
+        <div class="wrapper">
+            <h1>Home</h1>
+            <h2>Lorem ipsum dolor sit amet.</h2>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta iusto sint laudantium reprehenderit perspiciatis repellat omnis blanditiis modi sequi quas. Dicta, optio exercitationem. Fugiat rem at vel nesciunt laboriosam ducimus!</p>
+        </div>
+    </section>
+    
+    <section id="about">
+        <div class="wrapper">
+            <h1>About</h1>
+            <h2>Lorem ipsum dolor sit amet.</h2>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta iusto sint laudantium reprehenderit perspiciatis repellat omnis blanditiis modi sequi quas. Dicta, optio exercitationem. Fugiat rem at vel nesciunt laboriosam ducimus!</p>
+        </div>
+    </section>
+    <section id="skills">
+        <div class="wrapper">
+            <h1>Skills</h1>
+            <h2>Lorem ipsum dolor sit amet.</h2>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta iusto sint laudantium reprehenderit perspiciatis repellat omnis blanditiis modi sequi quas. Dicta, optio exercitationem. Fugiat rem at vel nesciunt laboriosam ducimus!</p>
+        </div>
+    </section>
+    
+    <section id="works">
+        <div class="wrapper">
+            <h1>Works</h1>
+            <h2>Lorem ipsum dolor sit amet.</h2>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta iusto sint laudantium reprehenderit perspiciatis repellat omnis blanditiis modi sequi quas. Dicta, optio exercitationem. Fugiat rem at vel nesciunt laboriosam ducimus!</p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="wrapper">
+            <h1>Contact</h1>
+            <h2>Lorem ipsum dolor sit amet.</h2>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta iusto sint laudantium reprehenderit perspiciatis repellat omnis blanditiis modi sequi quas. Dicta, optio exercitationem. Fugiat rem at vel nesciunt laboriosam ducimus!</p>
+        </div>
+    </section>
 
     <script>
         const btnToggle = document.querySelector('.btn_toggle');
         btnToggle.addEventListener('click', function()  {
+            home.scrollIntoView({behavior: "smooth"});
             bgContainer.classList.remove('bgimg_show');
             document.body.classList.toggle('bgcolor--blue');
         });
@@ -104,17 +160,26 @@
         btnReset.addEventListener('click', function()  {
             bgContainer.classList.remove('bgimg_show');
             document.body.classList.remove('bgcolor--blue', 'bgcolor--gray', 'bgimg');
+            about.scrollIntoView({behavior:"smooth"});
         });
         const btnBgGray = document.querySelector('.btn--bggray');
         btnBgGray.addEventListener('click', function(){
             bgContainer.classList.remove('bgimg_show');
             document.body.classList.add('bgcolor--gray');
+            skills.scrollIntoView({behavior:"smooth"});
         });
         const bgContainer = document.querySelector('.bgimg');
         const btnImg = document.querySelector('.btn_img');
         btnImg.addEventListener('click', function(){
             // bgContainer.classList.add('bgimg_show');
             bgContainer.classList.add('bgimg_show');
+            works.scrollIntoView({behavior:"smooth"});
+        });
+        const btnContact = document.querySelector('.btn_contact');
+        btnContact.addEventListener('click', function()  {
+            bgContainer.classList.remove('bgimg_show');
+            document.body.classList.remove('bgcolor--blue', 'bgcolor--gray', 'bgimg');
+            contact.scrollIntoView({behavior:"smooth"});
         });
 
         const navContainer = document.querySelector('.btns');
